@@ -1,0 +1,28 @@
+<!doctype html>
+
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+
+<nav>
+  Mail<b>ers</b>
+</nav>
+
+<section class="content">
+  <div class="options">
+    <form method="get" class="search">
+      <input name="search" type="text" placeholder="¿Qué Deseas Buscar?" />
+    </form>
+
+    {% block function %}{% endblock %}
+  </div>
+
+  <header class="header">
+    {% block header %}{% endblock %}
+  </header>
+
+  {% block content %}{% endblock %}
+</section>

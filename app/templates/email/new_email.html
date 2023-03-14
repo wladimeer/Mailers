@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Redactar{% endblock %}</h1>
+{% endblock %}
+
+{% block function %}
+  <a class="function" href="{{ url_for('email.index') }}">Volver</a>
+{% endblock %}
+
+{% block content %}
+  <form method="post" class="new-email-form-container">
+    <div class="message-container">
+      {% if message and message['success'] %}
+        <div class="message-content">
+          {% for text in message['success'] %}
+            <p class="message-text message-success">{{ text }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if message and message['error'] %}
+        <div class="message-content">
+          {% for text in message['error'] %}
+            <p class="message-text message-error">{{ text }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="new-email-input-group">
+      <label for="address" class="new-email-address">Dirección del Correo</label>
+
+      {% if fields and fields['address'] %}
+        <input name="address" type="text" id="address" placeholder="correo@dominio.cl" value="{{ fields['address'] }}" />
+      {% else %}
+        <input name="address" type="text" id="address" placeholder="correo@dominio.cl" />
+      {% endif %}
+    </div>
+
+    <div class="new-email-input-group">
+      <label for="subject" class="new-email-subject">Asunto del Correo</label>
+
+      {% if fields and fields['subject'] %}
+        <input name="subject" type="text" id="subject" placeholder="asunto de ejemplo" value="{{ fields['subject'] }}" />
+      {% else %}
+        <input name="subject" type="text" id="subject" placeholder="asunto de ejemplo" />      
+      {% endif %}
+    </div>
+
+    <div class="new-email-input-group">
+      <label for="content" class="new-email-content">Contenido del Correo</label>
+
+      {% if fields and fields['content'] %}
+        <textarea name="content" id="content" placeholder="contenido de ejemplo">{{ fields['content'] }}</textarea>
+      {% else %}
+        <textarea name="content" id="content" placeholder="contenido de ejemplo"></textarea>
+      {% endif %}
+    </div>
+
+    <input value="Enviar" type="submit" class="function button" />
+  </form>
+{% endblock %}

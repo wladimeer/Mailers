@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Enviados{% endblock %}</h1>
+{% endblock %}
+
+{% block function %}
+  <a class="function" href="{{ url_for('email.new_email') }}">Redactar</a>
+{% endblock %}
+
+{% block content %}
+  <ul class="index-email-container">
+    {% for email in emails %}
+      <li class="index-email">
+        <div>
+          <span class="index-email-address">{{ email.address }}</span>
+          <span class="index-email-subject">{{ email.subject }}</span>
+          <hr class="index-email-separator" />
+
+          <p class="index-email-content">{{ email.content }}</p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
